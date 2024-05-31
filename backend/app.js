@@ -53,7 +53,7 @@ app.get("/api/makeProblem", async(req, res) =>{
         });
             console.log(response.choices[0].message.content);
             result = JSON.parse(response.choices[0].message.content);
-            result['newsletter'] = newsletter;
+            result['newsletter'] = newsletter.replace(/[\n]/g, '').replace(/[\t]/g, '');
             console.log(result);
             res.send(result);
         } catch (error) {
