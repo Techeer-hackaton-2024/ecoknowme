@@ -42,7 +42,7 @@ app.get("/api/makeProblem", async(req, res) =>{
     try {
         const response = await openai.chat.completions.create({
             messages: [
-                { role: "system", content: "Create five quiz(Must be the prediction of the future.) to guess future economic phenomena in OX format(e.g. ~하였으므로 이번 달 안에 금리가 오를 것이다.), and print it out with an explanation in the following format: '{quiz:['<QUIZ1>', '<QUIZ2>', '<QUIZ3>', '<QUIZ4>', '<QUIZ5>'], correct_answer:['<QUIZ 1 CORRECT ANSWER(just O or X)>', '<QUIZ 2 CORRECT ANSWER(just O or X)>', '<QUIZ 3 CORRECT ANSWER(just O or X)>', '<QUIZ 4 CORRECT ANSWER(just O or X)>', '<QUIZ 5 CORRECT ANSWER(just O or X)>'], commentary:['<QUIZ1 COMMENTARY>', '<QUIZ2 COMMENTARY>', '<QUIZ3 COMMENTARY>', '<QUIZ4 COMMENTARY>', '<QUIZ5 COMMENTARY>']}" },
+                { role: "system", content: "Create five quiz for "+ level_name +"(Must be the prediction of the future.) to guess future economic phenomena in OX format(e.g. ~하였으므로 이번 달 안에 금리가 오를 것이다.), and print it out with an explanation in the following format: '{quiz:['<QUIZ1>', '<QUIZ2>', '<QUIZ3>', '<QUIZ4>', '<QUIZ5>'], correct_answer:['<QUIZ 1 CORRECT ANSWER(just O or X)>', '<QUIZ 2 CORRECT ANSWER(just O or X)>', '<QUIZ 3 CORRECT ANSWER(just O or X)>', '<QUIZ 4 CORRECT ANSWER(just O or X)>', '<QUIZ 5 CORRECT ANSWER(just O or X)>'], commentary:['<QUIZ1 COMMENTARY>', '<QUIZ2 COMMENTARY>', '<QUIZ3 COMMENTARY>', '<QUIZ4 COMMENTARY>', '<QUIZ5 COMMENTARY>']}" },
                 { role: "user", content: newsletter }
             ],
             model: "gpt-3.5-turbo",
