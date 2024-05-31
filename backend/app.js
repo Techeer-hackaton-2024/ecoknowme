@@ -34,10 +34,11 @@ app.get("/api/makeProblem", async(req, res) =>{
         level_name = 'Average';
     }
 
-    //뉴스본문 크롤링
-    newsletter = `[파이낸셜뉴스] 올해 4월까지 국세가 지난해 같은 기간 대비 8조원 이상 줄었다. 법인세수가 13조원 가까이 줄어들면서다.
+    const fetchAndParsePage = require('./gettext');  // gettext.js에서 함수 불러오기
 
-    최상목 경제부총리 겸 기획재정부 장관이 최근 기자간담회에서 "법인세수가 예상보다 덜 걷히고 있다"고 밝힌 것 보다 더 큰 감소 폭이다. 소득세, 부가가치세 등 다른 세목도 법인세수 감소 대체세목 역할을 못하면서 지난해에 이어 올해도'세수펑크' 가능성이 높아지고 있다.`;
+
+    //뉴스본문 크롤링
+    newsletter = await fetchAndParsePage()
 
     try {
         const response = await openai.chat.completions.create({
