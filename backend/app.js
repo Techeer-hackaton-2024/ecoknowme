@@ -34,7 +34,7 @@ app.get("/api/makeProblem", async(req, res) =>{
         level_name = 'Average';
     }
 
-    const fetchAndParsePage = require('./gettext');  // gettext.js에서 함수 불러오기
+    const fetchAndParsePage = require('./crawlingNews');  // gettext.js에서 함수 불러오기
 
 
     //뉴스본문 크롤링
