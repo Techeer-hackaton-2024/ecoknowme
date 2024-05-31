@@ -1,4 +1,4 @@
-import logo from '../assets/logo 1.png';
+import logo from '../assets/Group 2.png';
 import { useNavigate } from 'react-router-dom';
 
 function MainPage() {
@@ -11,10 +11,10 @@ function MainPage() {
   return (
     <div className="flex flex-col w-screen h-screen bg-[#333B65] justify-center items-center">
       <div className="flex flex-row justify-between w-[80%]">
-        <div className="flex">
+        <div className="flex ml-20">
           <img src={logo} />
         </div>
-        <div className="flex justify-center flex-col gap-4">
+        <div className="flex justify-center flex-col gap-4 mr-12">
           <div>
             <div className="text-[1.5rem] text-white ">쉽게 시작하는 경제퀴즈</div>
             <div className="text-[1.5rem] text-white ">경제를 알고 경제인으로서 나를 알다.</div>

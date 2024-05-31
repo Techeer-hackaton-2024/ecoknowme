@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function BasicQuiz() {
   const [isSubmit, setIsSubmit] = useState(false);
+  const [level, setLevel] = useState(0);
   const [userAnswers, setUserAnswers] = useState(Array(10).fill(null));
   const handleAnswerClick = (index: number, answer: string) => {
     const newAnswers = [...userAnswers];
@@ -33,6 +35,7 @@ function BasicQuiz() {
         score++;
       }
     }
+    setLevel(score);
     return score;
   };
 
@@ -49,20 +52,41 @@ function BasicQuiz() {
   const goToResult = () => {
     setIsSubmit(true);
     const level = calculateLevel(calculateScore());
+    // setLevel(level);
     console.log(level);
     axios.get('http://localhost:3010/api/makeProblem', { params: { level: level } }).then((res) => {
       console.log(res);
+      sessionStorage.setItem('quiz', res.data);
     });
   };
+  const navigate = useNavigate();
 
-  //   const goToResult = () => {
-  //     console.log(userAnswers);
-  //     setIsSubmit(true);
-  //   };
+  const goToDailyQuiz = () => {
+    navigate('/dailyquiz');
+    setIsSubmit(false);
+  };
+
   return (
     <div>
       {isSubmit ? (
-        <div>modal</div>
+        <div className="w-screen h-screen flex flex-col justify-center items-center bg-[#333B65]">
+          <div className="justify-center rounded-[1.3rem] bg-[rgba(233,233,233,0.71)] m-[0_0_2rem_0] flex flex-col items-center w-[1200px] h-[640px] box-sizing-border -mt-[3rem] overflow-y-scroll text-[5rem]">
+            <div className="text-center">
+              <p className="text-[4.5rem]">채점 결과</p>
+              <p className="text-[6rem] font-semibold">
+                <span className="text-[#ff3d33]">{level}</span> / 10
+              </p>
+            </div>
+            <div className="flex items-center justify-center">
+              <div
+                onClick={goToDailyQuiz}
+                className=" cursor-pointer rounded-[0.6rem] w-[400px] h-2 bg-[#FFC90B] flex justify-center items-center p-[2rem] box-sizing-border text-[1.9rem] font-bold text-[var(--azul-primrio,#5970E7)] mt-[2rem]"
+              >
+                데일리 퀴즈 풀기
+              </div>
+            </div>
+          </div>
+        </div>
       ) : (
         <div className="w-screen h-screen flex flex-col justify-center items-center bg-[#333B65]">
           <div className="rounded-[1.3rem] bg-[rgba(233,233,233,0.71)] m-[0_0_2rem_0] flex flex-col items-center w-[1200px] h-[640px] box-sizing-border -mt-[3rem] overflow-y-scroll">

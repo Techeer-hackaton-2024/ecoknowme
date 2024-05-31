@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import MainPage from './pages/MainPage.tsx';
 import BasicQuiz from './pages/BasicQuiz.tsx';
+import DailyQuiz from './pages/DailyQuiz.tsx';
+import Correct from './pages/Correct.tsx';
 
 const router = createBrowserRouter([
   {
@@ -14,11 +16,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/dailyquiz',
-    element: <MainPage />,
+    element: <DailyQuiz />,
   },
   {
     path: '/quizresult',
-    element: <MainPage />,
+    element: <Correct />,
   },
   {
     path: '/totalresult',
